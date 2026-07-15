@@ -1,0 +1,13 @@
+*.csv
+*.xlsx
+
+venv/
+.venv/
+env/
+
+__pycache__/
+*.pyd
+
+*.log
+
+.ipynb_checkpoints/
