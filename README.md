@@ -28,3 +28,20 @@ Instead of using the default 0.5 decision threshold, the mathematically optimal 
 * **True Negative (Correctly Rejected Defaults):** 18,451
 * **False Positive (Incorrect Approvals / Direct Loss):** 5,546
 * **False Negative (Incorrect Rejections / Opportunity Cost):** 10,714
+
+
+## ⚖️ Model Comparison & Selection
+
+Two distinct machine learning algorithms were implemented, optimized using cross-validation, and evaluated on the same test set (118,799 samples).
+
+| Model | Overall Accuracy | Recall (Class 0.0 - Default) | Precision (Class 0.0 - Default) | F1-Score (Class 0.0 / 1.0) |
+| :--- | :---: | :---: | :---: | :---: |
+| **Logistic Regression CV** | 86.3% | **77.0%** | ~54.0% | 0.63 / 0.91 |
+| **Random Forest Classifier** | **86.8%** | 76.0% | **65.0%** | **0.70 / 0.92** |
+
+### 📈 Model Evaluation Insights
+* **Random Forest Classifier (Top Performer)**: The ensemble model outperformed the linear baseline. While it maintains a highly competitive **76% Recall** for catching high-risk defaults (18,292 correctly flagged cases), it dramatically increases **Precision to 65%**. This significant drop in False Alarms directly translates to fewer accidental rejections of creditworthy applicants.
+* **Logistic Regression CV (Interpretable Alternative)**: While slightly behind in overall predictive power, it remains a valuable asset for features dependency analysis and regulatory compliance due to its transparent log-odds coefficients.
+* **Threshold Strategy**: For both models, the default `0.5` classification threshold was adjusted using **Youden's J statistic** ($J = TPR - FPR$). This mathematical approach optimized the trade-off between bank default protection and application conversion rates.
+
+
